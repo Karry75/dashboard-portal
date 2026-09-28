@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>两轮车换电 / 租车 · 运营数据看板作品集</title>
+<style>
+  :root{
+    --bg:#0a0f19; --bg2:#0e1626; --card:#121c2e; --card-h:#16233a;
+    --line:#1f3049; --txt:#e6eefb; --sub:#8ba2c4; --acc:#4da3ff; --good:#3ddc97;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:radial-gradient(1200px 600px at 15% -10%, #16304f 0%, transparent 55%),
+               radial-gradient(1000px 500px at 90% 0%, #1a2740 0%, transparent 50%),
+               var(--bg);
+    color:var(--txt);
+    font:14px/1.6 "Microsoft YaHei", -apple-system, "Segoe UI", sans-serif;
+    min-height:100vh;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:46px 24px 64px}
+  header{margin-bottom:38px}
+  h1{font-size:27px;font-weight:700;letter-spacing:.5px}
+  h1 .dot{color:var(--acc)}
+  .sub{color:var(--sub);font-size:13.5px;margin-top:10px;max-width:820px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--sub);background:#0f1929}
+  section{margin-top:34px}
+  h2{font-size:15px;font-weight:600;color:var(--txt);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+  .card{
+    display:block;text-decoration:none;color:inherit;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;
+    transition:.18s ease;position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--acc);opacity:0;transition:.18s}
+  .card:hover{background:var(--card-h);border-color:#2c4463;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  .card:hover::before{opacity:1}
+  .ct{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .name{font-size:15px;font-weight:600}
+  .tag{font-size:11px;color:var(--good);background:#0d2b22;border:1px solid #1c4a3a;border-radius:999px;padding:2px 8px;white-space:nowrap}
+  .desc{color:var(--sub);font-size:12.5px;min-height:52px}
+  .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:11.5px;color:#5f7594}
+  .go{color:var(--acc);font-weight:600}
+  footer{margin-top:46px;color:#5f7594;font-size:12px;border-top:1px solid var(--line);padding-top:18px;line-height:1.9}
+  code{font-family:Consolas,Monaco,monospace;color:#9fb6d6;font-size:11.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>两轮车换电 / 租车 业务 · 运营数据看板作品集<span class="dot">.</span></h1>
+    <p class="sub">
+      面向电动自行车「换电 + 租车」运营场景的一组数据看板与台账系统。后端统一从生产业务库（AnalyticDB / MySQL 协议）
+      <b>只读</b>抽取与聚合，前端以原生 JS + 本地化 ECharts 呈现；所有页面均为脱敏后的静态快照或只读演示，不含任何写操作。
+    </p>
+    <div class="chips">
+      <span class="chip">12 个在线看板</span>
+      <span class="chip">Flask / SQLite / AnalyticDB</span>
+      <span class="chip">原生 JS + ECharts（零外网依赖）</span>
+      <span class="chip">全链路只读 · 数据脱敏</span>
+      <span class="chip">GitHub Pages 静态托管</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>核心运营看板</h2>
+    <div class="grid">
+      <a class="card" href="https://karry75.github.io/citybike-unified/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">嘟嘟换电统一看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">用户协议 / 网点 / 换电柜 / 电池四类明细收进同一个链接，顶部菜单切换，支持关键词搜索、多条件筛选与结果导出。</p>
+        <div class="meta"><span>Flask · SQLite 快照库 · 原生 JS</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/citybike-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">城市换电业务看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">覆盖用户、网点、设备、电池、财务、销售、套餐、优惠券、运维、风险预警等 10+ 业务模块，以及 4 块运营指挥大屏。</p>
+        <div class="meta"><span>前端 + 数据抽取构建管线 · 原生 JS</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/citybike-pub/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">城市换电业务看板 · 静态发布版</span><span class="tag">在线演示</span></div>
+        <p class="desc">单文件自包含的轻量静态版本：打开即看、免登录、无后端依赖，适合公网分发与快速演示。</p>
+        <div class="meta"><span>自包含 HTML · ECharts 本地化</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/battery-swap-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">换电运营平台 · 多板块看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">12 个业务板块、60+ 看板接口；核心特性是断库容灾缓存——业务库不可达时回放最近一次成功数据，看板不白屏。</p>
+        <div class="meta"><span>Flask · PyMySQL 只读 · 原生 JS</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/user-ops-board/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">用户运营看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">独立 Flask 看板工程，只读复用业务库与基础库双库数据，聚焦用户维度的运营指标与结构分析。</p>
+        <div class="meta"><span>Flask · AnalyticDB 只读 · ECharts</span><span class="go">打开 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>财务与价值分析</h2>
+    <div class="grid">
+      <a class="card" href="https://karry75.github.io/board-value/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">网点价值与财务收支看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">把分散在各表的网点经营数据聚合成可横向比较的网点价值评分与收支视图，支持按城市 / 代理商 / 网点逐层下钻。</p>
+        <div class="meta"><span>Flask · 评分模型 · 三重降级缓存</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/elec-fee-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">电费管理系统</span><span class="tag">在线演示</span></div>
+        <p class="desc">打通「电费结算登记表」与「电费情况总库」的数据割裂，建立统一网点 / 商户电费结算管理中心：状态可视、到期预警、扫码采集。</p>
+        <div class="meta"><span>React 18 + Vite · Flask · 快照库</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/electric-fee-system/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">电费管理系统 · 静态快照</span><span class="tag">在线演示</span></div>
+        <p class="desc">电费看板的静态只读快照：结算 KPI、结算单、电费预警、费用支出、商户资料统计，取数层改为读取本地 JSON。</p>
+        <div class="meta"><span>原生 JS SPA · ECharts 本地化</span><span class="go">打开 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>趋势与专题分析</h2>
+    <div class="grid">
+      <a class="card" href="https://karry75.github.io/exchange-trend-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">换电行业综合分析看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">覆盖设备资产、用户与套餐生命周期、运营数据、场景点位、经营财务、数字化与运维能力、行业趋势七大主题，共 9 个页面。</p>
+        <div class="meta"><span>Flask · 快照与趋势对比 · ECharts</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/lowfreq-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">低频用户欠租催收看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">低频用户识别 + 欠租催收 + 智能回访排班一体化：自动构建用户画像与促成漏斗，生成可直接下发的回访名单。</p>
+        <div class="meta"><span>MySQL 同步 · 运营看板 · ECharts</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/rental-ledger-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">租车协议交互台账</span><span class="tag">只读演示</span></div>
+        <p class="desc">面向电池租车业务的协议全生命周期管理台账 + 数据看板：金额核算与分账，多角色录入、审核与导出（线上为脱敏只读版）。</p>
+        <div class="meta"><span>台账系统 · 分账核算 · 只读演示</span><span class="go">打开 →</span></div>
+      </a>
+      <a class="card" href="https://karry75.github.io/dudu-dashboard/" target="_blank" rel="noopener">
+        <div class="ct"><span class="name">设备预警看板</span><span class="tag">在线演示</span></div>
+        <p class="desc">面向换电柜 / 电池的设备预警看板：对话触发同步 → 直连业务库只读抽取 → 落本地真相源 → 看板实时读盘。</p>
+        <div class="meta"><span>只读直连 · 本地真相源 · 实时读盘</span><span class="go">打开 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    以上站点均为展示用静态快照或只读演示：数据经脱敏处理（手机号 / 证件号 / 姓名 / 商家名掩码，明细截断为样例，内网地址与外链图片移除），不含数据库地址、账号口令等连接信息，也不提供任何写入、审核或导出到服务端的能力。<br>
+    源码与说明见各仓库 README。站点由 GitHub Pages 托管，<code>karry75.github.io</code>。
+  </footer>
+</div>
+</body>
+</html>
